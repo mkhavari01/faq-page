@@ -7,6 +7,7 @@ import { RootState } from "../redux/store";
 
 import { useEffect } from "react";
 import { FAQItem } from "../components/FAQItem";
+import { LoadingPage } from "../components/Loader";
 
 const FAQPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const FAQPage: React.FC = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <LoadingPage />}
       {error && <p>Error: {error}</p>}
 
       <div className="div2">{renderList2()}</div>
