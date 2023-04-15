@@ -18,10 +18,26 @@ const FAQPage: React.FC = () => {
   const loading = useSelector(selectPostsLoading);
   const error = useSelector(selectPostsError);
 
-  const renderList = (): JSX.Element[] => {
+  const renderList1 = (): JSX.Element[] => {
     if (posts.data) {
+      let index2 = Math.round(posts.data.content.items.length / 2);
       return posts.data.content.items.map((person, index) => {
-        return <FAQItem info={person} index={index} />;
+        return index >= index2 ? (
+          <FAQItem info={person} index={index} />
+        ) : (
+          <></>
+        );
+      });
+    } else {
+      return [];
+    }
+  };
+
+  const renderList2 = (): JSX.Element[] => {
+    if (posts.data) {
+      let index2 = Math.round(posts.data.content.items.length / 2);
+      return posts.data.content.items.map((person, index) => {
+        return index < index2 ? <FAQItem info={person} index={index} /> : <></>;
       });
     } else {
       return [];
@@ -37,7 +53,8 @@ const FAQPage: React.FC = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
-      {renderList()}
+      <div className="div2">{renderList2()}</div>
+      <div className="div1">{renderList1()}</div>
     </>
   );
 };
