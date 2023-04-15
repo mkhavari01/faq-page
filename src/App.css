@@ -131,6 +131,11 @@ hr {
   color: var(--content-color);
 }
 
+@media screen and (min-width: 1251px){
+  .App{
+    margin: 0 60px;
+  }
+}
 
 @media screen and (min-width: 720px) {
   .accordion {

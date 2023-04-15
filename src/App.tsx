@@ -8,7 +8,7 @@ function App() {
       <section className="header">
         <div>
           <h1 className="danaBolder">سوالات متداول</h1>
-          <p className="router">
+          <p className="router danaRegular">
             <span>{"صفحه اصلی"}</span> {" > سوالات متداول"}{" "}
           </p>
         </div>
