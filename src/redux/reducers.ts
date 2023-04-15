@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import postsReducer from './apiSlice';
+import apiReducer from './apiSlice';
 import store from './store';
 
 const rootReducer = combineReducers({
-    posts: postsReducer
+    api: apiReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;

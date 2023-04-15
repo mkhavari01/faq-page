@@ -123,12 +123,18 @@ hr {
   border-radius: 8px !important;
 }
 
+.title{
+  color: var(--title-color);
+}
+
+.content{
+  color: var(--content-color);
+}
+
 
 @media screen and (min-width: 720px) {
   .accordion {
     margin: 10px 0;
-    /* min-width: 648px; */
-    /* height: 200px; */
   }
   .div1,.div2{
     display: flex;
@@ -139,13 +145,5 @@ hr {
     display: flex;
     gap: 24px;
     justify-content: center;
-    /* display: flex; */
-    /* flex-direction: wrap;
-    flex-wrap: wrap;
-    justify-content: space-around; */
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* justify-content: center;
-    align-items: center; */
   }
 }

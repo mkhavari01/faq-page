@@ -1,11 +1,7 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchPosts,
-  selectPostsLoading,
-  selectPostsError,
-} from "../redux/apiSlice";
+import { fetchData, selectApiLoading, selectApiError } from "../redux/apiSlice";
 
 import { RootState } from "../redux/store";
 
@@ -14,9 +10,9 @@ import { FAQItem } from "../components/FAQItem";
 
 const FAQPage: React.FC = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state: RootState) => state.posts);
-  const loading = useSelector(selectPostsLoading);
-  const error = useSelector(selectPostsError);
+  const posts = useSelector((state: RootState) => state.api);
+  const loading = useSelector(selectApiLoading);
+  const error = useSelector(selectApiError);
 
   const renderList1 = (): JSX.Element[] => {
     if (posts.data) {
@@ -45,7 +41,7 @@ const FAQPage: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchData());
   }, [dispatch]);
 
   return (

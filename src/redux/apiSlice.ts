@@ -23,47 +23,47 @@ export interface Item {
     "priority": number
 }
 
-export const fetchPosts: any = createAsyncThunk(
-    'api/fetchPosts',
+export const fetchData: any = createAsyncThunk(
+    'api/fetchData',
     async () => {
         const response = await fetch('https://api-dev.hesetazegi.com/FAQ/List');
         return response.json();
     }
 );
 
-interface PostsState {
+interface ApiState {
     data: ApiResponse | null,
     loading: boolean,
     error: string | null,
 }
 
-const initialState: PostsState = {
+const initialState: ApiState = {
     data: null,
     loading: false,
     error: null,
 };
 
-export const postsSlice = createSlice({
+export const apiSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPosts.pending, (state) => {
+        builder.addCase(fetchData.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(fetchPosts.fulfilled, (state, action) => {
+        builder.addCase(fetchData.fulfilled, (state, action) => {
             state.loading = false;
             state.data = action.payload;
         });
-        builder.addCase(fetchPosts.rejected, (state, action) => {
+        builder.addCase(fetchData.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message ?? 'An error occurred';
         });
     },
 });
 
-export const selectPosts = (state: RootState) => state.posts.data;
-export const selectPostsLoading = (state: RootState) => state.posts.loading;
-export const selectPostsError = (state: RootState) => state.posts.error;
+export const selectApi = (state: RootState) => state.api.data;
+export const selectApiLoading = (state: RootState) => state.api.loading;
+export const selectApiError = (state: RootState) => state.api.error;
 
-export default postsSlice.reducer;
+export default apiSlice.reducer;

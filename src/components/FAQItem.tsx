@@ -17,19 +17,21 @@ const FAQItem: React.FC<Props> = ({ info, index }) => {
   const [click, setClick] = React.useState(false);
   return (
     <>
-      <Accordion className="accordion" onClick={() => setClick(!click)}>
+      <Accordion className="accordion">
         <AccordionSummary
+          onClick={() => setClick(!click)}
           expandIcon={click ? <ExpandMoreIcon /> : <ChevronRightIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography fontFamily="danaBold">
+          <Typography fontFamily="danaBold" className="title" fontSize={16}>
             <span>{index + 1}.</span> {info.title}
           </Typography>
         </AccordionSummary>
         <hr />
         <AccordionDetails>
           <Typography
+            className="content"
             fontFamily="danaRegular"
             fontSize={14}
             textAlign={"justify"}
