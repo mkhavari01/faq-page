@@ -19,7 +19,7 @@ function Counter() {
 
   return (
     <div>
-      <p>Count: {count}</p>
+      {/* <p>Count: {count}</p>
       <button onClick={()=>dispatch(incrementAction())}>Increment</button>
       <button onClick={()=>dispatch(decrementAction())}>Decrement</button>
       {loading && <p>Loading...</p>}
@@ -30,7 +30,7 @@ function Counter() {
         {posts.data.map((post) => (
           <li key={post.id}>{post.title}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

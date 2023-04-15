@@ -1,6 +1,6 @@
 import './App.css';
 import { FAQPage } from './page/FAQPage';
-import { Counter } from './redux/test';
+// import { Counter } from './redux/test';
 
 function App() {
   // console.log(,"is envvvv")
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       حس تازگی
       <FAQPage/>
-      <Counter />
+      {/* <Counter /> */}
     </div>
   );
 }
