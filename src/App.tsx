@@ -1,12 +1,22 @@
 import './App.css';
 import { FAQPage } from './page/FAQPage';
 // import { Counter } from './redux/test';
+import { publicUrl } from './utils/utils';
 
 function App() {
-  // console.log(,"is envvvv")
   return (
     <div className="App">
-      حس تازگی
+      <section className="header">
+        <div>
+          <h1>سوالات متداول</h1>
+          <p>{"صفحه اصلی > سوالات متداول"} </p>
+        </div>
+        <div>
+          <span className='icon-shadow'>
+            <img src={publicUrl('shareIcon.png')} alt='share-icon'  />
+          </span>
+        </div>
+      </section>
       <FAQPage/>
       {/* <Counter /> */}
     </div>

@@ -12,7 +12,7 @@ interface ApiResponse {
     message: string | null;
 }
 
-interface Item {
+export interface Item {
     "id": string,
     "faqid": number,
     "faquid": string,
