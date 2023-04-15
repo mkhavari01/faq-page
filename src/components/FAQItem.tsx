@@ -6,6 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { parseHTML } from "../utils/utils";
+import ChevronRightIcon from "@mui/icons-material/ChevronLeftSharp";
 
 interface Props {
   info: Item;
@@ -13,13 +14,12 @@ interface Props {
 }
 
 const FAQItem: React.FC<Props> = ({ info, index }) => {
-  console.log("info is", info);
-  console.log("hhh", parseHTML(info.description));
+  const [click, setClick] = React.useState(false);
   return (
     <>
-      <Accordion className="accordion">
+      <Accordion className="accordion" onClick={() => setClick(!click)}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={click ? <ExpandMoreIcon /> : <ChevronRightIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
