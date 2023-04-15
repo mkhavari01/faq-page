@@ -1,60 +1,45 @@
-import * as React from 'react';
-import { Item } from '../redux/apiSlice';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import * as React from "react";
+import { Item } from "../redux/apiSlice";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { parseHTML } from "../utils/utils";
 
 interface Props {
   info: Item;
+  index: number;
 }
 
-const FAQItem: React.FC<Props> = ({ info }) => {
+const FAQItem: React.FC<Props> = ({ info, index }) => {
+  console.log("info is", info);
+  console.log("hhh", parseHTML(info.description));
   return (
-    <div>
-      <Accordion>
+    <>
+      <Accordion className="accordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography fontFamily="danaBold">
+            <span>{index + 1}.</span> {info.title}
+          </Typography>
         </AccordionSummary>
+        <hr />
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <Typography
+            fontFamily="danaRegular"
+            fontSize={14}
+            textAlign={"justify"}
+          >
+            {parseHTML(info.description)}
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion>
-    </div>
+    </>
   );
 };
 
-export  {FAQItem};
+export { FAQItem };
