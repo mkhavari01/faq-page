@@ -1,35 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import {FAQItem} from '../components/FAQItem';
 import { useDispatch, useSelector } from 'react-redux';
-// import { fetchFaqs } from '../redux/slices';
+import { fetchPosts, selectPosts, selectPostsLoading, selectPostsError } from '../redux/apiSlice';
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
+import { RootState } from '../redux/store';
+import { incrementAction,decrementAction } from '../redux/actions';
 
-const FAQPage: React.FC = () => {
-  const [faqs, setFaqs] = useState<FAQ[]>([]);
+import {useEffect} from 'react'
 
-  useEffect(() => {
-    // Fetch the FAQ data from an API 
-    // and update the state with the data
-    const fetchData = async () => {
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL!);
-      const data = await response.json();
-      setFaqs(data);
-    };
-    fetchData();
-  }, []);
+function FAQPage() {
+  const dispatch = useDispatch();
+  const count = useSelector((state: RootState) => state.counter.value);
+  const posts = useSelector((state: RootState) => state.posts);
+  const loading = useSelector(selectPostsLoading);
+  const error = useSelector(selectPostsError);
+
+  useEffect(()=>{
+    dispatch(fetchPosts());
+  },[dispatch])
 
   return (
     <div>
-      {/* {faqs.map((faq) => (
-        <FAQItem key={faq.question} question={faq.question} answer={faq.answer} />
-      ))} */}
-      {console.log(faqs,"ius the daata")!}
+      <p>Count: {count}</p>
+      <button onClick={()=>dispatch(incrementAction())}>Increment</button>
+      <button onClick={()=>dispatch(decrementAction())}>Decrement</button>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {console.log("posts are",posts)!}
+
+      <ul>
+        {posts.data.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
-export {FAQPage};
+export {FAQPage}
